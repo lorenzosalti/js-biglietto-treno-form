@@ -28,11 +28,13 @@ formElement.addEventListener('submit', function (event) {
 
   console.log('I dati sono stati inviati');
 
+  // tranforming inputs in number
   const userKm = parseInt(kmElement.value);
   console.log(`Km: ${userKm}`);
   const userAge = parseInt(ageElement.value);
   console.log(`Età: ${userAge}`);
 
+  // verifying data and calculating price
   if (!verifyData(userKm, userAge)) {
     fullPrice = userKm * costPerKm;
     discount = calcDiscount(userAge, fullPrice);
@@ -42,6 +44,7 @@ formElement.addEventListener('submit', function (event) {
     console.log('I dati inseriti non sono validi');
   }
 
+  // logging results in page
   kmLogElement.innerText = `Distanza da percorrere: ${userKm}Km`;
   ageLogElement.innerText = `Età del passeggero: ${userAge} anni`;
   priceLogElement.innerText = `Il prezzo del biglietto è: ${finalPrice}€`;
