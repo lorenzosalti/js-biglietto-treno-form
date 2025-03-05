@@ -15,6 +15,10 @@ const kmElement = document.getElementById('km-input');
 const ageElement = document.getElementById('age-input');
 const submitElement = document.getElementById('data-submit');
 const formElement = document.getElementById('ticket-form');
+// outputs
+const kmLogElement = document.getElementById('km-log');
+const ageLogElement = document.getElementById('age-log');
+const priceLogElement = document.getElementById('price-log');
 
 
 // form event
@@ -37,6 +41,10 @@ formElement.addEventListener('submit', function (event) {
   } else {
     console.log('I dati inseriti non sono validi');
   }
+
+  kmLogElement.innerText = `Distanza da percorrere: ${userKm}Km`;
+  ageLogElement.innerText = `Età del passeggero: ${userAge} anni`;
+  priceLogElement.innerText = `Il prezzo del biglietto è: ${finalPrice}€`;
 
 })
 
