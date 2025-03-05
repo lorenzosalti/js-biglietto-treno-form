@@ -19,6 +19,8 @@ const formElement = document.getElementById('ticket-form');
 const kmLogElement = document.getElementById('km-log');
 const ageLogElement = document.getElementById('age-log');
 const priceLogElement = document.getElementById('price-log');
+const dataList = document.getElementById('data-list');
+const invalidDataAlert = document.getElementById('invalid-data');
 
 
 // form event
@@ -40,14 +42,17 @@ formElement.addEventListener('submit', function (event) {
     discount = calcDiscount(userAge, fullPrice);
     finalPrice = calcTicketPrice(userKm, discount);
     console.log(`Il prezzo del biglietto è: ${finalPrice}€`);
+
+    // logging results in page
+    kmLogElement.innerText = `Distanza da percorrere: ${userKm}Km`;
+    ageLogElement.innerText = `Età del passeggero: ${userAge} anni`;
+    priceLogElement.innerText = `Il prezzo del biglietto è: ${finalPrice}€`;
+
   } else {
     console.log('I dati inseriti non sono validi');
+    dataList.classList.add('d-none');
+    invalidDataAlert.classList.remove('d-none');
   }
-
-  // logging results in page
-  kmLogElement.innerText = `Distanza da percorrere: ${userKm}Km`;
-  ageLogElement.innerText = `Età del passeggero: ${userAge} anni`;
-  priceLogElement.innerText = `Il prezzo del biglietto è: ${finalPrice}€`;
 
 })
 
