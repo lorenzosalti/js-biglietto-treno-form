@@ -1,36 +1,77 @@
-//  GLOBAL VARIABLES
+//  VARIABLES
+// constant oparators
 const costPerKm = 0.21;
 const minorsDiscount = 20;
 const oversDiscount = 40;
 const baseDiscount = 0;
 const minorsAgeLimit = 18;
 const oversMinAge = 65;
-let ticketPrice;
+// variable oparators
+let fullPrice;
 let discount;
-let age = parseInt(prompt('Quanti anni hai?'));
-let km = parseFloat(prompt('Quanti Km devi percorrere?'));
+let finalPrice;
+// user inputs
+const kmElement = document.getElementById('km-input');
+const ageElement = document.getElementById('age-input');
+const submitElement = document.getElementById('data-submit');
+const formElement = document.getElementById('ticket-form');
 
-// data verification
-if ((Number.isNaN(age)) || (Number.isNaN(km)) || age < 1 || km < 1) {
-  // error alert
-  alert('I dati inseriti non sono corretti');
-} else {
-  // calculating base price
-  ticketPrice = km * costPerKm;
 
-  if (minorsAgeLimit > age) { // calculating discount for minors
-    discount = ticketPrice * minorsDiscount / 100;
-  } else if (age >= oversMinAge) { // calculating discount for elders
-    discount = ticketPrice * oversDiscount / 100;
-  } else { // calculating base discount
-    discount = ticketPrice * baseDiscount / 100;
+// form event
+formElement.addEventListener('submit', function (event) {
+
+  event.preventDefault();
+
+  console.log('I dati sono stati inviati');
+
+  const userKm = parseInt(kmElement.value);
+  console.log(`Km: ${userKm}`);
+  const userAge = parseInt(ageElement.value);
+  console.log(`Età: ${userAge}`);
+
+  if (!verifyData(userKm, userAge)) {
+    fullPrice = userKm * costPerKm;
+    discount = calcDiscount(userAge, fullPrice);
+    finalPrice = calcTicketPrice(userKm, discount);
+    console.log(`Il prezzo del biglietto è: ${finalPrice}€`);
+  } else {
+    console.log('I dati inseriti non sono validi');
   }
 
-  // subtracting discount from base price
-  ticketPrice -= discount;
+})
 
-  // rounding price to 2nd decimal
-  ticketPrice = ticketPrice.toFixed(2);
-  // logging the final price
-  console.log(`Il prezzo del biglietto è: ${ticketPrice}€`);
+
+
+
+// console.log(kmElement);
+// console.log(ageElement);
+// console.log(submitElement);
+// console.log(formElement);
+
+
+// FUNCTIONS
+
+function verifyData(num1, num2) {
+  const notValid = ((Number.isNaN(num1)) || (Number.isNaN(num2)) || num1 < 1 || num2 < 1);
+  return notValid;
+}
+
+function calcDiscount(age, basePrice) {
+  let discount;
+  if (minorsAgeLimit > age) { // calculating discount for minors
+    discount = basePrice * minorsDiscount / 100;
+  } else if (age >= oversMinAge) { // calculating discount for elders
+    discount = basePrice * oversDiscount / 100;
+  } else { // calculating base discount
+    discount = basePrice * baseDiscount / 100;
+  }
+  return discount;
+}
+
+function calcTicketPrice(km, discount) {
+  let price;
+  price = km * costPerKm;
+  price -= discount;
+  price = price.toFixed(2);
+  return price;
 }
