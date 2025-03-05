@@ -43,6 +43,9 @@ formElement.addEventListener('submit', function (event) {
     finalPrice = calcTicketPrice(userKm, discount);
     console.log(`Il prezzo del biglietto è: ${finalPrice}€`);
 
+    dataList.classList.toggle('d-none');
+    invalidDataAlert.classList.toggle('d-none');
+
     // logging results in page
     kmLogElement.innerText = `Distanza da percorrere: ${userKm}Km`;
     ageLogElement.innerText = `Età del passeggero: ${userAge} anni`;
@@ -50,8 +53,8 @@ formElement.addEventListener('submit', function (event) {
 
   } else {
     console.log('I dati inseriti non sono validi');
-    dataList.classList.add('d-none');
-    invalidDataAlert.classList.remove('d-none');
+    dataList.classList.toggle('d-none');
+    invalidDataAlert.classList.toggle('d-none');
   }
 
 })
