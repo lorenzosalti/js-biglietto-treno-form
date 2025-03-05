@@ -1,0 +1,35 @@
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  height: 100%;
+}
+
+body {
+  background-color: #f8e599;
+  font-family: "Cormorant Garamond", serif;
+  font-optical-sizing: auto;
+}
+
+header {
+  height: 150px;
+  background-color: #212a37;
+}
+
+header div {
+  margin: 0 auto;
+  width: fit-content;
+  height: 100%;
+}
+
+main .btn {
+  color: #c78945;
+  background-color: #212a37;
+  --bs-btn-hover-bg: #c78945;
+}
