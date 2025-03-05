@@ -43,11 +43,6 @@ formElement.addEventListener('submit', function (event) {
 
 
 
-// console.log(kmElement);
-// console.log(ageElement);
-// console.log(submitElement);
-// console.log(formElement);
-
 
 // FUNCTIONS
 
